@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TheSimpsons</title>
+</head>
+<body>
+        <style>
+            body{
+        background-color: lightcoral;
+        }
+        .spriendfieldimg1{
+            position: absolute;
+            color: black;
+
+        }
+        .spriendfieldImg{
+            width: 75px;
+            height: 75px;
+            position: absolute;
+            top: 395px;
+            left: 255px;
+        }
+        button{
+            width: 55px;
+            height: 55px;
+            background-color:pink(255, 0, 212);
+            border-color:red;
+            border-radius: 50px;
+            position: absolute;
+            left: 95px;
+            top: 562px;
+        }
+        .placeholder{
+            width: 112px;
+            height: 72px;
+            position: absolute;
+            top: 590px;
+            left: 177px;
+            background-color:azure;
+            color: black;
+        }
+    </style>
+    <img src="tele medina +pro.jpg" alt="Pokedex" width="1000px">
+    <input type="text" placeholder="Homer Simpson" id="simpsonName" class="placeholder">
+    <img src="donut.png" alt="pokebola" id="soriendfieldImg"  class="spriendfieldImg">
+
+    <h3 class="pokeimg1" style="left: 605px; top: 242px; font-size: 12.5px;color: white;transform: rotate(-2deg);">Homero Simpson es el padre de la familia Simpson y protagonista; tiene 36 años, es obeso, calvo y con poco sentido común, aunque ama a todos sus hijos, aun así,
+         su relación con Bart muchas veces es temperamental y agresiva.<br> puesto que tiene combinaciones severas, 
+         <br>son muy cariñosos con sus amigos y por ello muy populares
+         <br>Poseen la facultad de volar gracias a la luz de la luna<br> y el mejor sitio para verlo es el Monte Moon.</h3>
+    <div id="pokename" class="pokeimg1" style="left:605px; top: 390px; font-size:13px;">ALTURA</div>
+    <div id="pokeHe" class="pokeimg1" style="left:665px; top: 385px; font-size:18px;">PESO</div>
+    <div id="pokeWe" class="pokeimg1" style="left:725px; top: 385px; font-size:20px;"></div>
+    <div id="poketype" class="pokeimg1" style="left:795px; top: 385px; font-size:20px;">TIPO</div>
+    <div id="pokenitem" class="pokeimg1" style="left:848px; top: 385px; font-size:20px;">STATS.</div>
+    <div id="pokemove1" class="pokeimg1" style="left:605px; top: 430px; font-size:20px;">HAB.</div>
+    <div id="pokemove2" class="pokeimg1" style="left:665px; top: 430px; font-size:20px;">MOV.</div>
+    <div id="pokemove3" class="pokeimg1" style="left:730px; top: 430px; font-size:20px;">EVO.</div>
+    <div id="pokemove4" class="pokeimg1" style="left:790px; top: 430px; font-size:20px;">R y H</div>
+    <div id="pokeid" class="pokeimg1" style="left: 853px; top: 430px; font-size:20px;">FOOD</div>
+    <div id="pokeinfo" class="pokeimg1" style="left: 600px; top: 520px; font-size:25px;">NDB</div>
+    <div id="pokeinfo" class="pokeimg1" style="left: 660px; top: 520px; font-size:25px;">Order:#</div>
+    <div id="pokeorder" class="pokeimg1" style="left:605px; top: 610px; font-size:25px; color: white;">Type:Normal</div>
+    <div id="pokeorder" class="pokeimg1" style="left:780px; top: 610px; font-size:27px; color: white;">Ability:Bailar</div>
+
+    <button onclick="fetchSpriendfield()" class="button"></button>
+    <div class="grafica">
+        <canvas id="miCanvas"></canvas>
+    </div>
+    <script>
+const fetchPokemon=()=>{
+    const pokeNameInput= document.getElementById("pokeName");
+    let pokeName = pokeNameInput.value;
+    pokeName= pokeName.toLowerCase();
+    const url =https://thesimpsonsquoteapi.glitch.me/quotes${sprindfieldName};
+    fetch(url).then((res ) => {
+        if (res.status != "200"){
+            console.log(res);
+            pokeImage("./")
+        }
+        else{
+            return res.json();
+        }
+    }).then((data) => {
+        if (data) {
+            console.log(data);
+
+            let pokeImg = data.sprites.front_default;
+            pokeImage(spriendfieldImg);
+
+            let name = document.getElementById('spriendfield')
+            name.innerHTML=Name: ${data.forms[0].name};
+
+            let element1 = document.getElementById('spriendfield')
+            element1.innerHTML=Height: ${data.data.height};
+
+            let element2 = document.getElementById('spriendfield')
+            element2.innerHTML=Weight: ${data.data.weight};
+
+            let element3 = document.getElementById('spriendfield')
+            element3.innerHTML=Order : #${data.data.order};
+
+            let element4 = document.getElementById('spriendfield')
+            element4.innerHTML=Id : #${data.data.id};
+
+            let element5 = document.getElementById('spriendfield')
+            element5.innerHTML=Ability : #${data.ability[0].ability.name};
+
+            let element6 = document.getElementById('spriendfield')
+            element6.innerHTML=Type : #${data.types[0].type.name};
+
+            let element7 = document.getElementById('spriendfield1')
+            element7.innerHTML=Move 1 : ${data.moves[0].move.name};
+
+            let element8 = document.getElementById('spriendfield2')
+            element8.innerHTML=Move 2 : ${data.moves[1].move.name};
+
+            let element9 = document.getElementById('spriendfield3')
+            element9.innerHTML=Move 3 : ${data.moves[2].move.name};
+
+            let element10 = document.getElementById('spriendfield4')
+            element10.innerHTML=Move 4: ${data.moves[3].move.name};
+
+            const miCanvas = document.getElementById("miCanvas").getCOntext("2d");
+            if(window.miCanva != undefined)
+            window.miCanva.destroy();
+        window.miCanva = new Chart(miCanvas,{
+            type:"bar",
+            data: {
+                labels:["HP", "Attack", "Defense", "Special-A", "Special-D", "Speed"],
+                datasets:[
+                    {
+                        label: ${data.form[0].name},
+                        backgrouncolor: 'blue',
+                        data:[${data.stats[0].base_stat}, ${data.stats[1].base_stat},${data.stat[2].base_stat},
+                    ${data.stat[3].base_stat},${data.stats[4].base_stat}, ${data.stats[5].base_stat}],
+                      bordercolor:[
+                      'blue',
+                        'burlywood',
+                        'fuchsia',
+                        'black'
+             
+                    ],
+                    backgrouncolor: [
+                    'blue',
+                        'burlywood',
+                        'fuchsia',
+                        'black'
+                    ],
+                }]
+            }
+        })
+        }
+    })
+
+}
+
+    </script>
+    <script src="chart.js">
+
+    </script>
+
+</body>
